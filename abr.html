@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Актау - Жемчужина Каспийского моря</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0077cc;
+      --secondary-color: #ff6600;
+      --dark-color: #1d1d1f;
+      --light-color: #f5f5f7;
+      --gray-color: #86868b;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
+                  url('https://kompastour.com/useruploads/regions/region_91dd926532.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 800px;
+      padding: 0 20px;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      z-index: 1000;
+      transition: var(--transition);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark-color);
+    }
+
+    /* Section Styles */
+    section {
+      padding: clamp(60px, 10vw, 100px) 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 60px);
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(30px, 5vw, 50px);
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+    }
+
+    .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .about-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* History Section */
+    .history-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: var(--primary-color);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      margin-bottom: 50px;
+      position: relative;
+      width: 50%;
+      padding: 20px;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background-color: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      transform: rotate(45deg);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -10px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -10px;
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* Sights Section */
+    .sights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 30px;
+    }
+
+    .sight-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+    }
+
+    .sight-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .sight-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .sight-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .sight-card:hover .sight-image img {
+      transform: scale(1.1);
+    }
+
+    .sight-info {
+      padding: 20px;
+    }
+
+    .sight-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 250px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: white;
+      font-size: 2rem;
+    }
+
+    /* Video Section */
+    .video-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .video-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .play-button:hover {
+      background-color: white;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .play-button i {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-left: 3px;
+    }
+
+    .video-info {
+      padding: 20px;
+    }
+
+    .video-info h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Map Section */
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      height: 500px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Contact Form */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(30px, 5vw, 50px);
+    }
+
+    .contact-form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(0, 119, 204, 0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
+      transform: translateY(-2px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 60px 20px 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--gray-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray-color);
+      font-size: 0.9rem;
+    }
+
+    /* Statistics Section */
+    .stats-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: clamp(60px, 10vw, 80px) 20px;
+      margin: 60px 0;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .stats-title h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+    }
+
+    .stats-title p {
+      font-size: 1.1rem;
+      color: var(--gray-color);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .table-container {
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      margin: 0 auto 40px;
+      max-width: 900px;
+      border: 1px solid #e0e0e0;
+      overflow-x: auto;
+    }
+
+    .demographics-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      min-width: 600px;
+    }
+
+    .demographics-table th {
+      background: linear-gradient(135deg, var(--primary-color), #005fa3);
+      color: white;
+      padding: 18px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .demographics-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid #eaeaea;
+      text-align: center;
+    }
+
+    .demographics-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .demographics-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .demographics-table tr:hover {
+      background-color: #f0f7ff;
+      transform: scale(1.01);
+      transition: var(--transition);
+    }
+
+    .year-column {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    .population-column {
+      font-weight: 600;
+    }
+
+    .growth-column {
+      font-weight: 600;
+    }
+
+    .positive-growth {
+      color: #2ecc71;
+    }
+
+    .negative-growth {
+      color: #e74c3c;
+    }
+
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+      gap: 25px;
+      margin-top: 50px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, white, #f8f9fa);
+      border-radius: 15px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      border: 1px solid #eaeaea;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-color), #005fa3);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.7rem;
+      box-shadow: 0 5px 15px rgba(0, 119, 204, 0.3);
+    }
+
+    .stat-value {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--gray-color);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-content,
+      .contact-container,
+      .video-container {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 50px;
+      }
+
+      .history-timeline::before {
+        left: 20px;
+      }
+
+      .timeline-content::after {
+        left: -10px !important;
+        right: auto !important;
+      }
+      
+      .demographics-table {
+        font-size: 0.9rem;
+      }
+      
+      .demographics-table th,
+      .demographics-table td {
+        padding: 14px 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 3rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        gap: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .stats-title h2 {
+        font-size: 2rem;
+      }
+      
+      .demographics-table {
+        font-size: 0.8rem;
+      }
+      
+      .demographics-table th,
+      .demographics-table td {
+        padding: 12px 8px;
+      }
+      
+      .stat-value {
+        font-size: 1.8rem;
+      }
+      
+      .map-container {
+        height: 400px;
+      }
+      
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .contact-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+      
+      .stats-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .table-container {
+        border-radius: 10px;
+      }
+      
+      .timeline-content {
+        padding: 20px;
+      }
+      
+      .sight-info, .video-info {
+        padding: 15px;
+      }
+      
+      .contact-form {
+        padding: 20px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .map-container {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 15px;
+      }
+      
+      .header-content {
+        padding: 0 15px;
+      }
+      
+      section {
+        padding: 50px 15px;
+      }
+      
+      .timeline-item {
+        padding: 10px;
+        padding-left: 40px;
+      }
+      
+      .history-timeline::before {
+        left: 15px;
+      }
+      
+      .timeline-content {
+        padding: 15px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-item {
+        height: 200px;
+      }
+      
+      .stats-section {
+        padding: 50px 15px;
+        margin: 40px 0;
+      }
+      
+      .stats-cards {
+        gap: 15px;
+      }
+      
+      .stat-card {
+        padding: 20px 15px;
+      }
+      
+      .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) {
+      .sight-card:hover {
+        transform: none;
+      }
+      
+      .stat-card:hover {
+        transform: none;
+      }
+      
+      .gallery-item:hover img {
+        transform: none;
+      }
+      
+      .about-image:hover img {
+        transform: none;
+      }
+      
+      .sight-card:hover .sight-image img {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Актау</div>
+      <ul class="nav-links">
+        <li><a href="#about">О городе</a></li>
+        <li><a href="#history">История</a></li>
+        <li><a href="#statistics">Статистика</a></li>
+        <li><a href="#sights">Достопримечательности</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#videos">Видео</a></li>
+        <li><a href="#map">Карта</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <h1>Актау</h1>
+      <p>Каспий теңізінің інжуі</p>
+      <a href="https://ru.wikipedia.org/wiki/Актау" class="btn">Узнать больше</a>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="filterable" data-category="culture">
+    <div class="section-title">
+      <h2>О городе</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p><span class="highlight">Актау</span> — город в западной части Казахстана, расположенный на берегу Каспийского моря. Он является административным центром Мангистауской области.</p>
+        <p>Город славится своими необычными пляжами, живописной природой и уникальной архитектурой — здесь практически нет улиц, адреса указываются по номерам микрорайонов и домов.</p>
+        <p>В апреле 2025 года Актау стал культурной столицей тюркского мира, что подчеркивает его значимость как культурного и туристического центра региона.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://www.orexca.com/img/kazakhstan/aktau/aktau6.jpg" alt="Актау">
+      </div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section id="history" class="filterable" data-category="history">
+    <div class="section-title">
+      <h2>История</h2>
+    </div>
+    <div class="history-timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1957</div>
+          <p>Геологическая партия Анатолия Кореневского приступила к поискам урановой руды.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1958</div>
+          <p>Прибыли первые строители будущего города.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1963</div>
+          <p>Посёлок Актауский получил статус города и название Актау.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1964</div>
+          <p>Город переименован в Шевченко в честь украинского поэта Тараса Шевченко.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1973</div>
+          <p>Построен первый в мире атомный опреснитель воды (БН-350).</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">1991</div>
+          <p>Городу вернули историческое название Актау.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2025</div>
+          <p>Актау стал культурной столицей тюркского мира.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section" id="statistics">
+    <div class="stats-container">
+      <div class="stats-title">
+        <h2>Демографическая статистика</h2>
+        <p>Изменение численности населения города Актау и демографические показатели</p>
+      </div>
+      
+      <div class="table-container">
+        <table class="demographics-table">
+          <thead>
+            <tr>
+              <th>Год</th>
+              <th>Численность населения</th>
+              <th>Изменение</th>
+              <th>Годовой прирост (%)</th>
+              <th>Примечания</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="year-column">1970</td>
+              <td class="population-column">59,600</td>
+              <td class="growth-column">-</td>
+              <td class="growth-column">-</td>
+              <td>Первая перепись после основания города</td>
+            </tr>
+            <tr>
+              <td class="year-column">1979</td>
+              <td class="population-column">110,575</td>
+              <td class="growth-column positive-growth">+50,975</td>
+              <td class="growth-column positive-growth">+7.8%</td>
+              <td>Рост после запуска атомного опреснителя</td>
+            </tr>
+            <tr>
+              <td class="year-column">1989</td>
+              <td class="population-column">159,245</td>
+              <td class="growth-column positive-growth">+48,670</td>
+              <td class="growth-column positive-growth">+4.2%</td>
+              <td>Период промышленного развития</td>
+            </tr>
+            <tr>
+              <td class="year-column">1999</td>
+              <td class="population-column">143,396</td>
+              <td class="growth-column negative-growth">-15,849</td>
+              <td class="growth-column negative-growth">-1.1%</td>
+              <td>Пост-независимый период, отток русского населения</td>
+            </tr>
+            <tr>
+              <td class="year-column">2009</td>
+              <td class="population-column">166,962</td>
+              <td class="growth-column positive-growth">+23,566</td>
+              <td class="growth-column positive-growth">+1.6%</td>
+              <td>Экономическая стабилизация и развитие нефтяной промышленности</td>
+            </tr>
+            <tr>
+              <td class="year-column">2019</td>
+              <td class="population-column">183,097</td>
+              <td class="growth-column positive-growth">+16,135</td>
+              <td class="growth-column positive-growth">+0.9%</td>
+              <td>Развитие туризма и инфраструктурные проекты</td>
+            </tr>
+            <tr>
+              <td class="year-column">2024</td>
+              <td class="population-column">195,300</td>
+              <td class="growth-column positive-growth">+12,203</td>
+              <td class="growth-column positive-growth">+1.3%</td>
+              <td>Оценочные данные (официальная перепись еще не проводилась)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-value">195,300</div>
+          <div class="stat-label">Текущая численность населения</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="stat-value">+227%</div>
+          <div class="stat-label">Рост с 1970 года</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-city"></i>
+          </div>
+          <div class="stat-value">5-й</div>
+          <div class="stat-label">Крупный город в Казахстане</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-flag"></i>
+          </div>
+          <div class="stat-value">2025</div>
+          <div class="stat-label">Культурная столица тюркского мира</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sights Section -->
+  <section id="sights" class="filterable" data-category="sights">
+    <div class="section-title">
+      <h2>Достопримечательности</h2>
+    </div>
+    <div class="sights-grid">
+      <div class="sight-card filterable" data-category="sights">
+        <div class="sight-image">
+          <a href="https://welcome.kz/ru/info-cities/mangystau/aktau/melovoy-lighthouse"> <img src="https://welcome.kz/ru/assets/images/products/0_gallery/locations/mangystau/aktau-lighthouse2.jpeg" alt="Маяк"></a>
+        </div>
+        <div class="sight-info">
+          <h3>Маяк</h3>
+          <p>Один из символов города, расположенный на берегу Каспийского моря.</p>
+        </div>
+      </div>
+      <div class="sight-card filterable" data-category="nature">
+        <div class="sight-image">
+          <a href="https://www.inaktau.kz/news/3781807/putesestvuem-po-mangistau-golubaa-laguna-na-43-m-kilometre"> <img src="https://balthazar.club/o/uploads/posts/2023-09/1695770929_balthazar-club-p-golubaya-laguna-kaspiiskoe-more-krasivo-3.jpg" alt="Голубая лагуна"></a>
+        </div>
+        <div class="sight-info">
+          <h3>Голубая лагуна</h3>
+          <p>Живописное место с кристально чистой водой и красивыми пейзажами.</p>
+        </div>
+      </div>
+      <div class="sight-card filterable" data-category="nature">
+        <div class="sight-image">
+          <a href="https://ru.wikipedia.org/wiki/Шеркала"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnfLkJIRigI5FbtGmAAeZh2EKdG-54DEWaQ&s" alt="Гора Шеркала"></a>
+        </div>
+        <div class="sight-info">
+          <h3>Гора Шеркала</h3>
+          <p>Уникальная гора-пиала, одна из самых известных достопримечательностей региона.</p>
+        </div>
+      </div>
+      <div class="sight-card filterable" data-category="nature">
+        <div class="sight-image">
+          <a href="https://www.advantour.com/rus/kazakhstan/mangystau/ustyurt-plateau.htm"> <img src="https://club-miry.ru/wp-content/uploads/Dylyuk_Sergey/2022/Kazah_april/glav_1920_mayskie.jpg" alt="Плато Устюрт"></a>
+        </div>
+        <div class="sight-info">
+          <h3>Плато Устюрт</h3>
+          <p>Уникальное природное образование с захватывающими видами.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="filterable" data-category="sights">
+    <div class="section-title">
+      <h2>Галерея</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item filterable" data-category="sights">
+        <img src="https://avatars.mds.yandex.net/i?id=8723443a7975b4c1767a9070bc348acc295e9f20-10471613-images-thumbs&n=13" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item filterable" data-category="nature">
+        <img src="https://www.orexca.com/img/kazakhstan/aktau/aktau6.jpg" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item filterable" data-category="sights">
+        <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR6RAkUBhMrUcrcBeCuX3kQ1M85PVp2zH40mDj4hI5dixgE2inqCaSx707HHhayVg5EHh99KccjycJHn_0UMw7rFSA&s=19" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item filterable" data-category="nature">
+        <img src="https://proaktau.com/wp-content/gallery/02_rock_trail_in_aktau/02_Rock_Trail_in_Aktau.jpg" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item filterable" data-category="sights">
+        <img src="https://www.holidaycheck.de/main-photo-redirect/ed086c87-22bb-410c-b0b5-3f33db7f9c6d/w_1280,h_720,c_fill,q_auto,f_auto" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item filterable" data-category="culture">
+        <img src="https://avatars.mds.yandex.net/get-altay/14920258/2a00000198636ad3b4c8bccb246e9d6f1751/L_height" alt="Актау">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos Section -->
+  <section id="videos" class="filterable" data-category="culture">
+    <div class="section-title">
+      <h2>Видео об Актау</h2>
+    </div>
+    <div class="video-container">
+      <div class="video-card filterable" data-category="culture">
+        <div class="video-thumbnail">
+          <img src="https://i.ytimg.com/vi/ds-0zZWZRNw/maxresdefault.jpg" alt="Орёл и Решка">
+          <div class="play-button" onclick="window.open('https://youtu.be/ds-0zZWZRNw?si=OWLagNnWhhxh9B33', '_blank')">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="video-info">
+          <h3>Актау. Орёл и Решка — Казахи</h3>
+          <p>Путешествие по Актау с популярным тревел-шоу.</p>
+        </div>
+      </div>
+      <div class="video-card filterable" data-category="culture">
+        <div class="video-thumbnail">
+          <img src="https://i.ytimg.com/vi/97LTjviLbdU/maxresdefault.jpg" alt="Каспий жағалауы">
+          <div class="play-button" onclick="window.open('https://youtu.be/97LTjviLbdU?si=znmbJNavU8I5vHlw', '_blank')">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="video-info">
+          <h3>Песня "Каспий жағалауы"</h3>
+          <p>Красивая песня о Каспийском побережье и городе Актау.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section id="map" class="filterable" data-category="sights">
+    <div class="section-title">
+      <h2>Карта Актау</h2>
+    </div>
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=Актау,%20Kazakhstan&z=12&output=embed" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="filterable" data-category="culture">
+    <div class="section-title">
+      <h2>Контакты</h2>
+    </div>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h3>Свяжитесь с нами</h3>
+        <form>
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" class="form-control" placeholder="Введите ваше имя">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Введите ваш email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Номер телефона</label>
+            <input type="text" id="phone" class="form-control" placeholder="Введите номер">
+          </div>
+          <div class="form-group">
+            <label for="message">Сообщение</label>
+            <textarea id="message" class="form-control" rows="5" placeholder="Введите ваше сообщение"></textarea>
+          </div>
+          <button type="submit" class="btn">Отправить</button>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h4>Адрес</h4>
+            <p>24 мкр 15 дом, Актау, Казахстан</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <h4>Телефон</h4>
+            <p>+7 (7292) 45-67-89</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>info@aktau.kz</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Актау</h3>
+        <p>Каспий теңізінің інжуі - прекрасный город на берегу Каспийского моря с богатой историей и уникальной культурой.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/hype_aktau?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@rixoswaterworldaktau" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Быстрые ссылки</h3>
+        <ul class="footer-links">
+          <li><a href="#about">О городе</a></li>
+          <li><a href="#history">История</a></li>
+          <li><a href="#statistics">Статистика</a></li>
+          <li><a href="#sights">Достопримечательности</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#videos">Видео</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Полезные ресурсы</h3>
+        <ul class="footer-links">
+          <li><a href="https://www.tripadvisor.ru/Attractions-g674570-Activities-Aktau_Mangystau_Province.html">Туристические маршруты</a></li>
+          <li><a href="https://www.luxuryhotelsguides.com/?ufi=-2334223&lang=ru&gad_source=1&gad_campaignid=1783529473&gbraid=0AAAAAD-Rb7UfQRfQJ1KHZET8aKlMj_WXa&gclid=CjwKCAiA2svIBhB-EiwARWDPjsrbxSOxNUpyZi5WAOIN0uek5UNjI30Um6k4qjub-72Tln4VQ27R1RoCC4EQAvD_BwE">Где остановиться</a></li>
+          <li><a href="https://www.tripadvisor.ru/Restaurants-g674570-Aktau_Mangystau_Province.html">Рестораны и кафе</a></li>
+          <li><a href="https://ru.busti.me/aktau/timetable/">Транспорт</a></li>
+          <li><a href="https://ticketon.kz/aktau">События</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Город Актау. Все права защищены.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu after clicking a link
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    // Navbar background change on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+        nav.style.padding = '10px 0';
+      } else {
+        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        nav.style.padding = '15px 0';
+      }
+    });
+
+    // Touch device detection
+    function isTouchDevice() {
+      return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    }
+
+    // Add touch-specific classes if needed
+    if (isTouchDevice()) {
+      document.body.classList.add('touch-device');
+    }
+  </script>
+</body>
+</html>
